@@ -24,7 +24,7 @@ jobs:
           PRODUCTION_DOMAIN: ${{ vars.PRODUCTION_DOMAIN }}
       - run: |
           echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> "$GITHUB_ENV"
-          echo " PRODUCTION_DOMAIN: ${{env.PRODUCTION_DOMAIN}} "
+          echo " PRODUCTION_DOMAIN: ${{env.PRODUCTION.PRODUCTION_DOMAIN }} "
 
 
       - uses: chrislennon/action-aws-cli@v1.1
