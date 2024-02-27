@@ -18,6 +18,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - run: env
       - run: npm install
       - run: npm run build
         env:
