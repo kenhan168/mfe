@@ -17,6 +17,7 @@ jobs:
         echo "overridden variable : $OVERRIDE_VAR"
         echo "variable from shell environment : $env_var"
         echo "PRODUCTION_DOMAIN variable : $PRODUCTION_DOMAIN"
+        echo "direct access PRODUCTION_DOMAIN variable : ${{ vars.PRODUCTION_DOMAIN }}"
       env:
         REPOSITORY_VAR: ${{ vars.REPOSITORY_VAR }}
         ORGANIZATION_VAR: ${{ vars.ORGANIZATION_VAR }}
