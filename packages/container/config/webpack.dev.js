@@ -8,6 +8,7 @@ const devConfig = {
   mode:  'development',
   devServer: {
     port: 8080,
+    contentBase: './public',
     historyApiFallback: {
       index: '/'
     }
