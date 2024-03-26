@@ -1,4 +1,4 @@
-name: deploy-auth
+name: deploy-dashboard
 
 on:
   workflow_dispatch:
@@ -6,11 +6,11 @@ on:
     branches:
       - main
     paths:
-      - 'packages/auth/**'
+      - 'packages/dashboard/**'
 
 defaults:
   run:
-    working-directory: packages/auth
+    working-directory: packages/dashboard
 
 jobs:
   build:
@@ -26,13 +26,13 @@ jobs:
 
 
       - uses: chrislennon/action-aws-cli@v1.1
-      - run: aws s3 sync dist s3://${{ vars.AWS_S3_BUCKET_NAME }}/auth/latest
+      - run: aws s3 sync dist s3://${{ vars.AWS_S3_BUCKET_NAME }}/dashboard/latest
         env:
           env:
           AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-      - run: aws cloudfront create-invalidation --distribution-id ${{ vars.AWS_DISTRIBUTION_ID }} --paths "/auth/latest/remoteEntry.js"
+      - run: aws cloudfront create-invalidation --distribution-id ${{ vars.AWS_DISTRIBUTION_ID }} --paths "/dashboard/latest/remoteEntry.js"
         env:
           AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
