@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { createMemoryHistory } from 'history'
+import { createMemoryHistory, createBrowserHistory } from 'history'
 
 // Mount function to startup the app
-const mount = (el, { onNavigate }) => {
-  const history = createMemoryHistory();
+const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+  // If defaultHistory are being provided, use it
+  // otherwise, call createMemoryHistory() function to create memory history
+  const history = defaultHistory || createMemoryHistory(
+    {
+      initialEntries: [initialPath]
+    }
+  );
 
   // If the container's onNavigate function is not null, add it to the 
   // subscriber of the history
@@ -35,7 +41,7 @@ if (process.env.NODE_ENV === 'development'){
   const devRoot = document.querySelector('#_marketing-dev-root');
   if (devRoot)
   {
-    mount(devRoot, {});
+    mount(devRoot, { defaultHistory: createBrowserHistory()});
   }
 } 
 
